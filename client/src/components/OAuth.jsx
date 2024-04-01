@@ -15,10 +15,10 @@ export default function OAuth() {
 
                const result = await signInWithPopup(auth, provider);
 
-               const res = await fetch("/api/auth/google", {
-                    method: "POST",
+               const res = await fetch('/api/auth/google', {
+                    method: 'POST',
                     headers: {
-                         "Content-Type": "application/json",
+                         'Content-Type': 'application/json',
                     },
                     body: JSON.stringify({
                          name: result.user.displayName,
@@ -26,14 +26,14 @@ export default function OAuth() {
                          photo: result.user.photoURL,
                     }),
                });
-               console.log(res)
+               // console.log(res)
                const data = await res.json();
                dispatch(signInSuccess(data));
                navigate("/");
           } catch (error) {
                console.log("Could not sign in with Google", error);
           }
-     }
+     };
      return (
           <button
                onClick={handleGoogleClick}
