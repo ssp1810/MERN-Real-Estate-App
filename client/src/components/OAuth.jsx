@@ -28,10 +28,11 @@ export default function OAuth() {
                });
                // console.log(res)
                const data = await res.json();
+               // console.log(data)
                dispatch(signInSuccess(data));
                navigate("/");
           } catch (error) {
-               console.log("Could not sign in with Google", error);
+               console.log("Could not sign in with Google");
           }
      };
      return (
