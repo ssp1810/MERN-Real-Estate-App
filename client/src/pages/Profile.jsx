@@ -184,6 +184,7 @@ export default function Profile() {
                          type="password"
                          placeholder="Password"
                          defaultValue={currentUser.password}
+                         onChange={handleChange}
                          className="border p-3 rounded-lg"
                     />
                     <button
