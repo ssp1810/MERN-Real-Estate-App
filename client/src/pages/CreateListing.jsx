@@ -8,6 +8,7 @@ import React, { useState } from "react";
 import { app } from "../firebase";
 import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
+import Loader from "react-js-loader";
 
 export default function CreateListing() {
      const navigate = useNavigate();
@@ -161,7 +162,7 @@ export default function CreateListing() {
                if (data.success === false) {
                     setError(data.message);
                }
-               navigate(`/listing/${data._id}`)
+               navigate(`/listings/${data._id}`);
           } catch (error) {
                setError(error);
                setLoading(false);
@@ -348,7 +349,18 @@ export default function CreateListing() {
                                    disabled={uploading}
                                    className="p-3 text-green-700 border border-green-700 rounded-lg uppercase hover:shadow-lg disabled:opacity-80"
                               >
-                                   {uploading ? "Uploading..." : "Upload"}
+                                   {uploading ? (
+                                        <div className="p-0 m-0 w-18 h-2 flex justify-center">
+                                             <Loader
+                                                  type="TailSpin"
+                                                  bgColor="green"
+                                                  color="white"
+                                                  size={30}
+                                             />
+                                        </div>
+                                   ) : (
+                                        "Upload"
+                                   )}
                               </button>
                          </div>
                          <p className="text-red-700 text-sm">
