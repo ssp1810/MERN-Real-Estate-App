@@ -28,6 +28,8 @@ export default function Profile() {
      const [fileUploadError, setFileUploadError] = useState(false);
      const [updateSuccess, setUpdateSuccess] = useState(false);
      const [formData, setFormData] = useState({});
+     const [showListingError, setShowListingError] = useState(false);
+     const [userListing, setUserListing] = useState([]);
 
      // console.log(formData);
      // console.log(filePer);
@@ -125,6 +127,26 @@ export default function Profile() {
           }
      };
 
+     const handleShowListing = async () => {
+          try {
+               setShowListingError(false);
+               const res = await fetch(`/api/user/listings/${currentUser._id}`);
+               const data = await res.json();
+               if (data.success === false) {
+                    setShowListingError(true);
+                    return;
+               }
+               setUserListing(data);
+               // console.log(data)
+          } catch (error) {
+               setShowListingError(true);
+          }
+     };
+
+     const handleDeleteListItem = async () => {};
+
+     const handleEditListItem = async () => {};
+
      return (
           <div className="p-3 max-w-lg mx-auto">
                <h1 className="text-3xl font-semibold text-center my-7">
@@ -218,6 +240,64 @@ export default function Profile() {
                <p className="text-green-700 mt-5">
                     {updateSuccess ? "Profile updated successfully!" : ""}
                </p>
+               <button
+                    onClick={handleShowListing}
+                    className="text-green-700 w-full"
+               >
+                    Show Listings
+               </button>
+               <p className="text-red-700">
+                    {showListingError && "Error in showing listings"}
+               </p>
+
+               {userListing && userListing.length > 0 && (
+                    <div className="flex flex-col gap-4">
+                         <h1 className="text-center mt-7 text-2xl font-semibold">
+                              Your Listings
+                         </h1>
+
+                         {userListing.map((listing) => (
+                              <div
+                                   key={listing._id}
+                                   className="border rounded-lg p-3 flex justify-between items-center gap-4 "
+                              >
+                                   <Link to={`/listing/${listing._id}`}>
+                                        <img
+                                             src={listing.imageUrls[0]}
+                                             alt="listing cover"
+                                             className="h-16 w-16 object-contain"
+                                        />
+                                   </Link>
+                                   <Link
+                                        className="flex-1 text-slate-700 font-semibold hover:underline truncate"
+                                        to={`/listing/${listing._id}`}
+                                   >
+                                        <p>{listing.name}</p>
+                                   </Link>
+                                   <div className="flex flex-row gap-3 items-center">
+                                        <button
+                                             onClick={() =>
+                                                  handleDeleteListItem(
+                                                       listing._id
+                                                  )
+                                             }
+                                             className="border border-red-600 text-red-600 rounded-lg p-2 hover:bg-red-600 hover:text-white uppercase"
+                                        >
+                                             Delete
+                                        </button>
+                                        <Link to={`/update-listing/${listing._id}`}>
+                                             <button
+                                                  onClick={handleEditListItem}
+                                                  className="border border-green-600 text-green-600 rounded-lg p-2 hover:bg-green-600 hover:text-white uppercase"
+                                             >
+                                                  Edit
+                                             </button>
+                                        </Link>
+                                   </div>
+                              </div>
+                         ))}
+                    </div>
+               )}
           </div>
      );
 }
