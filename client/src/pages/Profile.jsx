@@ -143,7 +143,23 @@ export default function Profile() {
           }
      };
 
-     const handleDeleteListItem = async () => {};
+     const handleDeleteListItem = async (listingId) => {
+          try {
+               const res = await fetch(`/api/listing/delete/${listingId}`, {
+                    method: "DELETE",
+               });
+               const data = await res.json();
+               if (data.success === false) {
+                    console.log(data.message);
+                    return;
+               }
+               setUserListing((prev) =>
+                    prev.filter((listing) => listing._id !== listingId)
+               );
+          } catch (error) {
+               console.log(error.message);
+          }
+     };
 
      const handleEditListItem = async () => {};
 
@@ -285,7 +301,9 @@ export default function Profile() {
                                         >
                                              Delete
                                         </button>
-                                        <Link to={`/update-listing/${listing._id}`}>
+                                        <Link
+                                             to={`/update-listing/${listing._id}`}
+                                        >
                                              <button
                                                   onClick={handleEditListItem}
                                                   className="border border-green-600 text-green-600 rounded-lg p-2 hover:bg-green-600 hover:text-white uppercase"
