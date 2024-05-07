@@ -27,7 +27,7 @@ app.listen(3000, () => {
      console.log("Server is running on the port 3000");
 });
 
-app.get("/test", (req, res) => {
+app.get("/", (req, res) => {
      res.json({
           message: "Hello world!",
      });
@@ -41,7 +41,7 @@ app.use("/api/listing", listingRouter);
 app.use(express.static(path.join(__dirname, "client", "dist")));
 
 app.get("*", (req, res) => {
-     res.sendFile(path.join(__dirname, "client", "dist", "index.js"));
+     res.sendFile(path.join(__dirname, "client", "dist", "index.html"));
 });
 
 app.use((err, req, res, next) => {
