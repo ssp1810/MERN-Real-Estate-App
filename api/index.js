@@ -41,7 +41,7 @@ app.use("/api/listing", listingRouter);
 app.use(express.static(path.join(__dirname, "client", "dist")));
 
 app.get("*", (req, res) => {
-     res.sendFile(path.join(__dirname, "client", "dist", "index.html"));
+     res.sendFile(path.join(__dirname, "client", "dist", "index.js"));
 });
 
 app.use((err, req, res, next) => {
