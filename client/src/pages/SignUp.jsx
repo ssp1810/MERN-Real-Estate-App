@@ -17,7 +17,7 @@ export default function SignUp() {
           try{
                e.preventDefault();
                setLoading(true);
-               const res = await fetch("https://mern-real-estate-app-wxcv.vercel.app/api/auth/signup", {
+               const res = await fetch("https://mern-real-estate-app-ten.vercel.app/api/auth/signup", {
                     method: "POST",
                     headers: {
                          "Content-Type": "application/json",

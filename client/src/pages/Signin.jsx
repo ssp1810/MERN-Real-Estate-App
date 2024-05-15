@@ -33,7 +33,7 @@ export default function SignIn() {
                //      },
                //      body: JSON.stringify(formData),
                // });
-               const res  = await axios.post("https://mern-real-estate-app-wxcv.vercel.app/api/auth/signin", formData);
+               const res  = await axios.post("https://mern-real-estate-app-ten.vercel.app/api/auth/signin", formData);
 console.log('12')
                const data = await res.json();
                if (data.success === false) {

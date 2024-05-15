@@ -30,7 +30,7 @@ export default function Listing() {
                try {
                     setLoading(true);
                     const res = await fetch(
-                         `/api/listing/get/${params.listingId}`
+                         `https://mern-real-estate-app-ten.vercel.app/api/listing/get/${params.listingId}`
                     );
                     const data = await res.json();
                     if (data.success === false) {
