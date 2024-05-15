@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import OAuth from "../components/OAuth";
-import axios from 'axios';
 export default function SignUp() {
      const [formData, setFormData] = useState({});
      const [error, setError] = useState(null);
@@ -24,7 +23,6 @@ export default function SignUp() {
                     },
                     body: JSON.stringify(formData),
                });
-               // const res  = await axios.post("https://mern-real-estate-app-wxcv.vercel.app/api/auth/signup", formData);
 
                const data = await res.json();
                if (data.success === false) {
