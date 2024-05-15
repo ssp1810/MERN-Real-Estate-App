@@ -114,7 +114,7 @@ export default function Profile() {
      const handleSignOut = async () => {
           try {
                dispatch(signOutUserStart());
-               const res = await fetch("api/auth/signout");
+               const res = await fetch("https://mern-real-estate-app-wxcv.vercel.app/api/auth/signout");
 
                const data = await res.json();
                if (data.success === false) {

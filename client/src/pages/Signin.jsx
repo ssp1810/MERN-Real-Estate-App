@@ -7,6 +7,7 @@ import {
      signInFailure,
 } from "../redux/user/userSlice";
 import OAuth from "../components/OAuth";
+import axios from "axios";
 
 export default function SignIn() {
      const [formData, setFormData] = useState({});
@@ -24,13 +25,16 @@ export default function SignIn() {
           e.preventDefault();
           try {
                dispatch(signInStart);
-               const res = await fetch("/api/auth/signin", {
-                    method: "POST",
-                    headers: {
-                         "Content-Type": "application/json",
-                    },
-                    body: JSON.stringify(formData),
-               });
+               console.log('object')
+               // const res = await fetch("https://mern-real-estate-app-wxcv.vercel.app/api/auth/signin", {
+               //      method: "POST",
+               //      headers: {
+               //           "Content-Type": "application/json",
+               //      },
+               //      body: JSON.stringify(formData),
+               // });
+               const res  = await axios.post("https://mern-real-estate-app-wxcv.vercel.app/api/auth/signin", formData);
+console.log('12')
                const data = await res.json();
                if (data.success === false) {
                     dispatch(signInFailure(data.message));
@@ -38,7 +42,8 @@ export default function SignIn() {
                }
                dispatch(signInSuccess(data));
                navigate("/");
-          } catch (e) {
+          } catch (error) {
+               console.log(error)
                dispatch(signInFailure(error.message));
           }
           setFormData("");
