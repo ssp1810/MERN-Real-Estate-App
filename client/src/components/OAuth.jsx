@@ -15,7 +15,7 @@ export default function OAuth() {
 
                const result = await signInWithPopup(auth, provider);
 
-               const res = await fetch('/api/auth/google', {
+               const res = await fetch('https://mern-real-estate-app-ten.vercel.app/api/auth/google', {
                     method: 'POST',
                     headers: {
                          'Content-Type': 'application/json',
@@ -26,7 +26,9 @@ export default function OAuth() {
                          photo: result.user.photoURL,
                     }),
                });
+               // console.log(res)
                const data = await res.json();
+               // console.log(data)
                dispatch(signInSuccess(data));
                navigate("/");
           } catch (error) {

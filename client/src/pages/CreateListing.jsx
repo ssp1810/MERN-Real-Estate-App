@@ -65,7 +65,7 @@ export default function CreateListing() {
                setUploading(false);
           }
      };
-
+     // console.log(formData);
      const storeImage = async (file) => {
           return new Promise((resolve, reject) => {
                const storage = getStorage(app);
@@ -94,6 +94,7 @@ export default function CreateListing() {
                );
           });
      };
+     //      console.log(files);
 
      const handleRemoveImage = (index) => {
           setFormData({
@@ -132,6 +133,7 @@ export default function CreateListing() {
                });
           }
      };
+     // console.log(formData);
 
      const handleSubmit = async (e) => {
           e.preventDefault();
@@ -148,7 +150,7 @@ export default function CreateListing() {
                     ...formData,
                     userRef: currentUser._id,
                };
-               const res = await fetch("/api/listing/create", {
+               const res = await fetch("https://mern-real-estate-app-ten.vercel.app/api/listing/create", {
                     method: "POST",
                     headers: {
                          "Content-Type": "application/json",

@@ -31,6 +31,10 @@ export default function Profile() {
      const [showListingError, setShowListingError] = useState(false);
      const [userListing, setUserListing] = useState([]);
 
+     // console.log(formData);
+     // console.log(filePer);
+     // console.log(fileUploadError);
+
      useEffect(() => {
           if (file) {
                handleFileUpload(file);
@@ -41,7 +45,7 @@ export default function Profile() {
           e.preventDefault();
           try {
                dispatch(updateUserStart());
-               const res = await fetch(`/api/user/update/${currentUser._id}`, {
+               const res = await fetch(`https://mern-real-estate-app-ten.vercel.app/api/user/update/${currentUser._id}`, {
                     method: "POST",
                     headers: {
                          "Content-Type": "application/json",
@@ -61,7 +65,7 @@ export default function Profile() {
      };
      const handleFileUpload = (file) => {
           const storage = getStorage(app);
-          const fileName = new Date().getTime() + file.name; 
+          const fileName = new Date().getTime() + file.name; //to have a unique file name
           const storageRef = ref(storage, fileName);
           const uploadTask = uploadBytesResumable(storageRef, file);
 
@@ -126,7 +130,7 @@ export default function Profile() {
      const handleShowListing = async () => {
           try {
                setShowListingError(false);
-               const res = await fetch(`/api/user/listings/${currentUser._id}`);
+               const res = await fetch(`https://mern-real-estate-app-ten.vercel.app/api/user/listings/${currentUser._id}`);
                const data = await res.json();
                if (data.success === false) {
                     setShowListingError(true);
@@ -141,7 +145,7 @@ export default function Profile() {
 
      const handleDeleteListItem = async (listingId) => {
           try {
-               const res = await fetch(`/api/listing/delete/${listingId}`, {
+               const res = await fetch(`https://mern-real-estate-app-ten.vercel.app/api/listing/delete/${listingId}`, {
                     method: "DELETE",
                });
                const data = await res.json();
