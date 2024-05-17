@@ -65,7 +65,6 @@ export default function CreateListing() {
                setUploading(false);
           }
      };
-     // console.log(formData);
      const storeImage = async (file) => {
           return new Promise((resolve, reject) => {
                const storage = getStorage(app);
@@ -94,7 +93,6 @@ export default function CreateListing() {
                );
           });
      };
-     //      console.log(files);
 
      const handleRemoveImage = (index) => {
           setFormData({
@@ -133,7 +131,6 @@ export default function CreateListing() {
                });
           }
      };
-     // console.log(formData);
 
      const handleSubmit = async (e) => {
           e.preventDefault();

@@ -37,7 +37,6 @@ export default function UpdateListing() {
      useEffect(() => {
           const fetchListing = async () => {
                const listingId = params.listingId;
-               // console.log(listingId)
                const res = await fetch(`https://mern-real-estate-app-ten.vercel.app/api/listing/get/${listingId}`, {
                     method: "GET",
                });
@@ -47,7 +46,6 @@ export default function UpdateListing() {
                     return;
                }
                setFormData(data);
-               // console.log(data)
           };
           fetchListing();
      }, []);
@@ -112,7 +110,6 @@ export default function UpdateListing() {
                );
           });
      };
-     //      console.log(files);
 
      const handleRemoveImage = (index) => {
           setFormData({
@@ -151,7 +148,6 @@ export default function UpdateListing() {
                });
           }
      };
-     // console.log(formData);
 
      const handleSubmit = async (e) => {
           e.preventDefault();

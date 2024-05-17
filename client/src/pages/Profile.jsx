@@ -31,10 +31,6 @@ export default function Profile() {
      const [showListingError, setShowListingError] = useState(false);
      const [userListing, setUserListing] = useState([]);
 
-     // console.log(formData);
-     // console.log(filePer);
-     // console.log(fileUploadError);
-
      useEffect(() => {
           if (file) {
                handleFileUpload(file);
@@ -137,7 +133,6 @@ export default function Profile() {
                     return;
                }
                setUserListing(data);
-               // console.log(data)
           } catch (error) {
                setShowListingError(true);
           }

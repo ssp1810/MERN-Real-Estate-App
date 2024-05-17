@@ -31,8 +31,6 @@ export default function Home() {
                     );
                     const data = await res.json();
                     setRentListings(data);
-                    console.log("RentListings", rentListings);
-                    
                     fetchSaleListings();
                } catch (error) {
                     log(error);
@@ -51,7 +49,6 @@ export default function Home() {
           };
           fetchOfferListings();
      }, []);
-     console.log("OfferListings", offerListings);
      return (
           <div>
                {/* top */}

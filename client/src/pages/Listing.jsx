@@ -39,8 +39,6 @@ export default function Listing() {
                          return;
                     }
                     setListing(data);
-                    console.log(listing?.userRef);
-
                     setLoading(false);
                     setError(false);
                } catch (error) {
